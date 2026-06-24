@@ -1,0 +1,21 @@
+.about-intro {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.about-photo img {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.about-text p { color: var(--text-muted); margin-bottom: 1rem; }
+
+@media (max-width: 760px) {
+  .about-intro { grid-template-columns: 1fr; }
+  .about-photo { max-width: 240px; margin: 0 auto; }
+}

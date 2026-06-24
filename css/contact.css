@@ -1,0 +1,77 @@
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.contact-list { list-style: none; display: grid; gap: 1.25rem; }
+
+.contact-list li { display: flex; flex-direction: column; }
+
+.contact-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 0.2rem;
+}
+
+.contact-list a {
+  font-weight: 600;
+  transition: color var(--transition);
+}
+.contact-list a:hover { color: var(--accent-2); }
+
+/* ---------- Formulier ---------- */
+.contact-form { display: grid; gap: 1.1rem; }
+
+.field { display: flex; flex-direction: column; }
+
+.field label {
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.field input,
+.field textarea {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  color: var(--text);
+  font: inherit;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.2);
+}
+
+.field .error {
+  color: #ff6b6b;
+  font-size: 0.82rem;
+  min-height: 1.1em;
+  margin-top: 0.3rem;
+}
+
+.field input.invalid,
+.field textarea.invalid {
+  border-color: #ff6b6b;
+}
+
+.form-status {
+  font-weight: 600;
+  min-height: 1.2em;
+}
+.form-status.success { color: var(--accent-2); }
+.form-status.fail { color: #ff6b6b; }
+
+@media (max-width: 760px) {
+  .contact-layout { grid-template-columns: 1fr; }
+}
