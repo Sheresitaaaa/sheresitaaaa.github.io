@@ -1,0 +1,93 @@
+/* work */
+
+/* hero center */
+.page-hero { text-align: center; }
+.page-hero p { margin-left: auto; margin-right: auto; }
+
+/* 2 kolommen groot scherm */
+@media (min-width: 1000px) {
+  .project-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* meta niet stretchen */
+.project-body .meta { flex: 0 0 auto; }
+
+/* thumb hover */
+.project-card:hover .project-thumb--placeholder svg { transform: scale(1.08); transition: transform 0.4s ease; }
+
+/* hele kaart klikbaar */
+a.project-card { color: inherit; text-decoration: none; }
+.project-card--link { cursor: pointer; }
+.project-read-more {
+  margin-top: auto;
+  padding-top: 1rem;
+  color: var(--primary);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap var(--transition);
+}
+.project-card--link:hover .project-read-more { gap: 0.7rem; }
+
+/* artikel */
+.article {
+  max-width: 780px;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+}
+.article-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 1.75rem;
+  transition: gap var(--transition);
+}
+.article-back:hover { gap: 0.7rem; }
+.article-meta {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+.article-title { font-size: clamp(1.8rem, 4.5vw, 2.8rem); line-height: 1.15; }
+.article-lead {
+  color: var(--text-muted);
+  font-size: 1.15rem;
+  margin: 1rem 0 2rem;
+  max-width: 60ch;
+}
+.article-hero-img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2.5rem;
+}
+.article-body p { color: var(--text); margin-bottom: 1.3rem; font-size: 1.05rem; }
+.article-body h2 { font-size: 1.4rem; margin: 2rem 0 1rem; }
+.article-list {
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+.article-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: var(--text);
+}
+.article-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gradient);
+}
+.article-source { margin-top: 2rem; }
