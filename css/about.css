@@ -17,7 +17,7 @@ html[data-theme="dark"] .about-hero {
   position: absolute;
   left: 0;
   right: 0;
-  top: 22%; /* schouderhoogte */
+  top: 22%; 
   bottom: 0;
   height: auto;
   z-index: 0;
@@ -291,7 +291,7 @@ html[data-theme="dark"] .acad-card {
   font-size: 0.85rem;
   color: var(--text-muted);
   margin-top: 0.2rem;
-  white-space: nowrap;
+  overflow-wrap: break-word;
 }
 
 /* 3 kolommen desktop */

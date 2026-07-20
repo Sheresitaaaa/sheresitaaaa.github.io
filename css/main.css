@@ -1,6 +1,6 @@
-/* gedeelde styles */
+/* main.css - algemene stijlen voor alle pagina's */
 
-/* vars */
+/* kleuren en variabelen */
 :root {
   --bg: #f6f8f0;
   --bg-2: #eef2e3;
@@ -54,9 +54,13 @@ html[data-theme="dark"] {
   --shadow-lg: 0 26px 60px rgba(0, 0, 0, 0.6);
 }
 
-/* reset */
+/* reset + basis */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
+}
 
 body {
   font-family: var(--font-body);
@@ -65,6 +69,9 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
   transition: background var(--transition), color var(--transition);
 }
 
@@ -83,7 +90,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; font-weight: 
   -webkit-text-fill-color: transparent;
 }
 
-/* nav */
+/* header en navigatie */
 .site-header {
   position: sticky; top: 0; z-index: 100;
   background: color-mix(in srgb, var(--bg) 85%, transparent);
@@ -129,7 +136,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* buttons */
+/* knoppen */
 .btn {
   display: inline-flex; align-items: center; gap: 0.5rem;
   padding: 0.8rem 1.5rem; border-radius: 999px;
@@ -143,7 +150,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
 .btn-ghost:hover { transform: translateY(-2px); border-color: var(--primary); color: var(--primary); }
 .btn-sm { padding: 0.55rem 1.1rem; font-size: 0.9rem; }
 
-/* sections */
+/* secties */
 .section { padding-block: 5rem; }
 .section-sm { padding-block: 3.5rem; }
 .section-head { margin-bottom: 2.5rem; max-width: 640px; }
@@ -165,10 +172,18 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
 .link-arrow:hover { gap: 0.7rem; }
 
 /* hero */
-.hero { position: relative; padding-block: 5rem 4rem; display: grid; grid-template-columns: 0.9fr 1.35fr; gap: 2rem; align-items: center; }
+.hero {
+  position: relative;
+  padding-block: 5rem 4rem;
+  display: grid;
+  grid-template-columns: 0.9fr 1.35fr;
+  gap: 2rem;
+  align-items: center;
+  overflow: hidden;
+}
 .hero::before {
   content: ""; position: absolute; z-index: -1; top: -80px; right: -60px;
-  width: 420px; height: 420px; border-radius: 50%;
+  width: min(420px, 70vw); height: min(420px, 70vw); border-radius: 50%;
   background: radial-gradient(circle, var(--primary-soft), transparent 70%);
 }
 .hero-eyebrow {
@@ -179,16 +194,20 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
 }
 .status-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 0 4px var(--primary-soft); }
 .hero-title {
-  font-size: clamp(1rem, 3.8vw + 0.35rem, 2.85rem);
+  font-size: clamp(1.15rem, 3.2vw + 0.4rem, 2.85rem);
   font-weight: 700;
-  white-space: nowrap;
   letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+@media (min-width: 901px) {
+  .hero-title { white-space: nowrap; }
 }
 .hero-subtitle { font-size: clamp(1.1rem, 2.2vw, 1.5rem); font-weight: 600; color: var(--text-muted); margin: 0.6rem 0 1.2rem; }
 .hero-text { color: var(--text-muted); max-width: 52ch; font-size: 1.08rem; margin-bottom: 2rem; }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-/* role card */
+/* visitekaartje in de hero */
 .hero-card {
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
   padding: 2rem; box-shadow: var(--shadow-lg); position: relative;
@@ -205,7 +224,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
 .hero-fact { display: flex; align-items: center; gap: 0.7rem; color: var(--text-muted); font-size: 0.95rem; }
 .hero-fact svg { width: 18px; height: 18px; color: var(--primary); flex-shrink: 0; }
 
-/* foto */
+/* uitgesneden foto */
 .hero-photo { position: relative; display: flex; justify-content: center; align-items: center; }
 .hero-photo img {
   width: 100%;
@@ -215,13 +234,13 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
   filter: drop-shadow(0 18px 30px rgba(27, 36, 21, 0.18));
 }
 
-/* stats */
+/* cijfers */
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
 .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; box-shadow: var(--shadow-sm); }
 .stat-num { font-family: var(--font-head); font-size: 2.1rem; font-weight: 700; color: var(--primary); }
 .stat-label { color: var(--text-muted); font-size: 0.92rem; margin-top: 0.3rem; }
 
-/* cards */
+/* kaarten */
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.8rem; box-shadow: var(--shadow-sm); transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition); }
 .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: color-mix(in srgb, var(--primary) 40%, var(--border)); }
@@ -239,7 +258,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
 .card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 .card p { color: var(--text-muted); }
 
-/* projects */
+/* projecten */
 .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.75rem; }
 .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow-sm); transition: transform var(--transition), box-shadow var(--transition); }
 .project-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
@@ -263,7 +282,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
 .project-body h3 { font-size: 1.25rem; margin-bottom: 0.5rem; flex: 0 0 auto; }
 .project-body > p { color: var(--text-muted); flex: 0 0 auto; }
 .project-body .tags { flex: 0 0 auto; }
-/* cta onderaan kaart */
+/* onderaan uitlijnen: "Lees het artikel" én Live site/GitHub */
 .project-links {
   display: flex;
   gap: 1rem;
@@ -271,7 +290,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
   padding-top: 1rem;
 }
 
-/* kaarten als link */
+/* klikbare projectkaarten (home + werk) */
 a.project-card { color: inherit; text-decoration: none; }
 .project-card--link { cursor: pointer; }
 .project-read-more {
@@ -292,7 +311,7 @@ a.project-card { color: inherit; text-decoration: none; }
 .tag { font-size: 0.78rem; font-weight: 600; padding: 0.3rem 0.75rem; border-radius: 999px; background: var(--primary-soft); color: var(--primary-700); }
 html[data-theme="dark"] .tag { color: var(--primary); }
 
-/* timeline */
+/* tijdlijn */
 .timeline { position: relative; margin-left: 0.5rem; border-left: 2px solid var(--border); }
 .timeline-item { position: relative; padding: 0 0 2.2rem 2rem; }
 .timeline-item:last-child { padding-bottom: 0; }
@@ -319,14 +338,14 @@ html[data-theme="dark"] .tag { color: var(--primary); }
 .lang-bar { height: 9px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
 .lang-bar i { display: block; height: 100%; border-radius: 999px; background: var(--gradient); }
 
-/* chips */
+/* certificaten / chips */
 .chips { display: flex; flex-wrap: wrap; gap: 0.7rem; }
 .chip { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); font-weight: 500; font-size: 0.92rem; box-shadow: var(--shadow-sm); }
 .chip svg { width: 16px; height: 16px; color: var(--primary); }
 .chip.gold { border-color: color-mix(in srgb, var(--ochre) 50%, var(--border)); }
 .chip.gold svg { color: var(--ochre); }
 
-/* cta */
+/* call to action */
 .cta { position: relative; background: var(--gradient); border-radius: var(--radius-lg); padding: 3.5rem 2rem; text-align: center; color: #fff; overflow: hidden; box-shadow: var(--shadow-lg); }
 .cta h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 0.8rem; }
 .cta p { max-width: 46ch; margin: 0 auto 1.8rem; opacity: 0.95; }
@@ -335,7 +354,7 @@ html[data-theme="dark"] .tag { color: var(--primary); }
 .cta .btn-light { background: #fff; color: var(--primary-700); }
 .cta .btn-light:hover { transform: translateY(-2px); }
 
-/* page hero */
+/* hero van de subpagina's */
 .page-hero { padding-block: 3.5rem 1rem; }
 .page-hero .section-eyebrow { margin-bottom: 0.6rem; }
 .page-hero h1 { font-size: clamp(2rem, 5vw, 3rem); }
@@ -357,16 +376,18 @@ html[data-theme="dark"] .tag { color: var(--primary); }
 .footer-nav a { color: var(--text-muted); text-decoration: none; transition: color var(--transition); }
 .footer-nav a:hover { color: var(--primary); }
 
-/* scroll fade */
+/* scroll-animatie */
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.is-visible { opacity: 1; transform: none; }
 
-/* glow bg */
+/* zachte, gedeelde gloed-achtergrond (home, werk, contact, artikelen) */
 body.has-glow {
   background: transparent;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 body.has-glow main { flex: 1 0 auto; }
 body.has-glow .site-footer { position: relative; z-index: 1; }
@@ -378,6 +399,10 @@ body.has-glow .site-footer { position: relative; z-index: 1; }
   overflow: hidden;
   pointer-events: none;
   background: var(--bg);
+  width: 100%;
+  max-width: 100%;
+  /* voorkomt horizontale scroll door blobs op iOS */
+  contain: paint;
 }
 .glow-bg .blob {
   position: absolute;
@@ -443,6 +468,15 @@ html[data-theme="dark"] .glow-bg .blob {
   .stats { grid-template-columns: repeat(2, 1fr); }
   .footer-top { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
+  .section-title { overflow-wrap: break-word; }
+  .container { padding-left: 1.15rem; padding-right: 1.15rem; }
+  .glow-bg .blob-1,
+  .glow-bg .blob-2,
+  .glow-bg .blob-3,
+  .glow-bg .blob-4 {
+    width: 28vmax;
+    height: 28vmax;
+  }
 }
 
 @media (max-width: 680px) {
